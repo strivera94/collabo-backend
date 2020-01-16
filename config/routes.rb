@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # resources :media
   # resources :disciplines
-  # resources :collaborations
+  resources :collaborations, only:[:index, :show, :create]
   resources :projects, only: [:index, :show, :create, :update, :destroy]
   resources :users, only: [:index, :show, :create, :update, :destroy]
   get '/users/:id/projects', to: 'users#user_projects'
