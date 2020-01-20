@@ -38,6 +38,12 @@ class UsersController < ApplicationController
         render json: projects
     end
 
+    def user_reviews
+        user = User.find(params[:id])
+        reviews = user.reviews_as_reviewee
+        render json: reviews
+    end
+
     private
 
     def user_params

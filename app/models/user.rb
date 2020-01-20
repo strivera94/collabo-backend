@@ -8,6 +8,13 @@ class User < ApplicationRecord
 
     has_many :projects
     has_many :collaborations
-
     has_many :joined_projects, through: :collaborations, source: :project
+
+    # has_many :reviews
+
+    has_many :reviews_as_reviewer, class_name: 'Review', foreign_key: :reviewer_id
+    has_many :reviewees, through: :reviews_as_reviewer #, source: :reviewee
+
+    has_many :reviews_as_reviewee, class_name: 'Review', foreign_key: :reviewee_id
+    has_many :reviewers, through: :reviews_as_reviewee #, source: :reviewer
 end
