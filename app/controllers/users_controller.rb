@@ -16,8 +16,10 @@ class UsersController < ApplicationController
             user = user
             token = JWT.encode({user_id: user.id}, hmac_secret, 'HS256')
             render json: {user: user, token: token}
+        elsif !user.valid?
+            render json:{errors:'Please fill out all fields'}
         else
-            render json: {errors: user.errors.full_messages}
+            render json: {errors: 'Something went wrong'}
         end
     end
 
